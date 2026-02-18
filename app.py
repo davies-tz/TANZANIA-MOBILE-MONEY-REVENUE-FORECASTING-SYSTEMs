@@ -1,14 +1,24 @@
 """
+"""
 Tanzania Mobile Money Revenue Forecasting System
 Streamlit Deployment Application
-Author: ML Project Team
-Date: 2025
 """
 
+import sys
+import subprocess
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
+
+# Force install joblib if missing (safety net)
+try:
+    import joblib
+except ImportError:
+    st.warning("📦 Installing joblib... Please wait a moment.")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "joblib==1.3.1"])
+    import joblib
+    st.success("✅ Joblib installed successfully!")
+
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime
@@ -21,6 +31,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Rest of your app.py code (the one you sent) goes here...
+# [Copy the rest of your app.py code here]
 
 # Custom CSS for better styling
 st.markdown("""
